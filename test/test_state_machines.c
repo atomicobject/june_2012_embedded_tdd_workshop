@@ -1,5 +1,6 @@
 #include "unity.h"
 #include "state_machines.h"
+#include "mock_output.h"
 
 void setUp(void)
 {
@@ -35,4 +36,16 @@ void test_LineCache(void)
   /* TEST_ASSERT_TRUE(LineCache('\n', buffer, sizeof(buffer))); */
 
   /* TEST_ASSERT_EQUAL_STRING("ABC\n", buffer); */
+}
+
+void test_LineCache_should_output_the_line_when_finished(void)
+{
+  char buffer[16] = {0};
+
+  /* TEST_ASSERT_FALSE(LineCache('A',   buffer, sizeof(buffer))); */
+  /* TEST_ASSERT_FALSE(LineCache('B',   buffer, sizeof(buffer))); */
+  /* TEST_ASSERT_FALSE(LineCache('C',   buffer, sizeof(buffer))); */
+  /* TEST_ASSERT_TRUE( LineCache('\n',  buffer, sizeof(buffer))); */
+
+  /* Serial_Output_Expect("ABC\n"); */
 }

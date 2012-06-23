@@ -1,4 +1,5 @@
 #include "state_machines.h"
+#include "output.h"
 
 static STATE_T state;
 
