@@ -1,0 +1,18 @@
+#include "state_machines.h"
+
+static STATE_T state;
+
+void GenericStateMachine_Setup(void)
+{
+  state = IDLE;
+}
+
+STATE_T GenericStateMachine_ProcessState(int value)
+{
+  return IDLE;
+}
+
+bool LineCache(char c, char * buffer, int len)
+{
+  return false;
+}
