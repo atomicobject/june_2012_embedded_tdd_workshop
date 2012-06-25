@@ -24,6 +24,6 @@ void test_MathUtils_Clamp(void)
   TEST_IGNORE_MESSAGE("Uncomment these to begin 'clamp'.");
 
   /* TEST_ASSERT_EQUAL( 15, MathUtils_Clamp(10, 20, 15) ); */
-  /* TEST_ASSERT_EQUAL(  5, MathUtils_Clamp(10, 20, 10) ); */
-  /* TEST_ASSERT_EQUAL( 47, MathUtils_Clamp(10, 20, 20) ); */
+  /* TEST_ASSERT_EQUAL( 10, MathUtils_Clamp(10, 20,  5) ); */
+  /* TEST_ASSERT_EQUAL( 20, MathUtils_Clamp(10, 20, 47) ); */
 }
