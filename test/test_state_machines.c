@@ -26,25 +26,43 @@ void test_LineCache(void)
 {
   char buffer[16] = {0};
   
-  TEST_IGNORE_MESSAGE("Uncomment tests to enable 'state machine' example.");
+  TEST_ASSERT_FALSE(LineCache('A',  buffer, sizeof(buffer)));
+  TEST_ASSERT_FALSE(LineCache('B',  buffer, sizeof(buffer)));
+  TEST_ASSERT_FALSE(LineCache('C',  buffer, sizeof(buffer)));
 
-  /* TEST_ASSERT_FALSE(LineCache('A',  buffer, sizeof(buffer))); */
-  /* TEST_ASSERT_FALSE(LineCache('B',  buffer, sizeof(buffer))); */
-  /* TEST_ASSERT_FALSE(LineCache('C',  buffer, sizeof(buffer))); */
+  TEST_ASSERT_TRUE(LineCache('\n', buffer, sizeof(buffer)));
 
-  /* TEST_ASSERT_TRUE(LineCache('\n', buffer, sizeof(buffer))); */
+  TEST_ASSERT_EQUAL_STRING("ABC\n", buffer);
+}
 
-  /* TEST_ASSERT_EQUAL_STRING("ABC\n", buffer); */
+void test_LineCache_does_not_assume_null_buffer(void)
+{
+  char buffer[4] = { 0, 'b', 0 };
+
+  TEST_ASSERT_FALSE(LineCache('A',  buffer, sizeof(buffer)));
+  TEST_ASSERT_EQUAL_STRING("A", buffer);
+}
+
+void test_LineCache_does_not_violate_memory_boundaries(void)
+{
+  char buffer[4] = { 0, 0, 0, 'X' };
+  char expected_buffer[4] = {'A', 'B', 'C', 'X'};
+
+  TEST_ASSERT_FALSE(LineCache('A',  buffer, sizeof(buffer) - 1));
+  TEST_ASSERT_FALSE(LineCache('B',  buffer, sizeof(buffer) - 1));
+  TEST_ASSERT_FALSE(LineCache('C',  buffer, sizeof(buffer) - 1));
+
+  TEST_ASSERT_EQUAL_MEMORY(expected_buffer, buffer, 4);
 }
 
 void test_LineCache_should_output_the_line_when_finished(void)
 {
   char buffer[16] = {0};
 
-  /* TEST_ASSERT_FALSE(LineCache_WithOutput('A',   buffer, sizeof(buffer))); */
-  /* TEST_ASSERT_FALSE(LineCache_WithOutput('B',   buffer, sizeof(buffer))); */
-  /* TEST_ASSERT_FALSE(LineCache_WithOutput('C',   buffer, sizeof(buffer))); */
+  TEST_ASSERT_FALSE(LineCache_WithOutput('A',   buffer, sizeof(buffer)));
+  TEST_ASSERT_FALSE(LineCache_WithOutput('B',   buffer, sizeof(buffer)));
+  TEST_ASSERT_FALSE(LineCache_WithOutput('C',   buffer, sizeof(buffer)));
 
-  /* Serial_Output_Expect("ABC\n"); */
-  /* TEST_ASSERT_TRUE( LineCache_WithOutput('\n',  buffer, sizeof(buffer))); */
+  Serial_Output_Expect("ABC\n");
+  TEST_ASSERT_TRUE( LineCache_WithOutput('\n',  buffer, sizeof(buffer)));
 }

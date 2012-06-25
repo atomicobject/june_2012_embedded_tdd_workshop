@@ -29,10 +29,31 @@ STATE_T GenericStateMachine_ProcessState(int value)
 
 bool LineCache(char c, char * buffer, int len)
 {
-  return false;
+  int end_of_string = strnlen(buffer, len);
+  buffer[end_of_string] = c;
+
+  if ((end_of_string + 1) < len)
+    buffer[end_of_string + 1] = 0;
+
+  if (c == '\n')
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
 }
 
 bool LineCache_WithOutput(char c, char * buffer, int len)
 {
-  return false;
+  if (LineCache(c, buffer, len))
+  {
+    Serial_Output(buffer);
+    return true;
+  }
+  else
+  {
+    return false;
+  }
 }
