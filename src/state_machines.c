@@ -10,7 +10,21 @@ void GenericStateMachine_Setup(void)
 
 STATE_T GenericStateMachine_ProcessState(int value)
 {
-  return IDLE;
+  switch(state)
+  {
+  case IDLE:
+    if (value < 10)
+    {
+      state++;
+    }
+    break;
+  case STATE1:
+    if (value < 100)
+    {
+      state++;
+    }
+  }
+  return state;
 }
 
 bool LineCache(char c, char * buffer, int len)
