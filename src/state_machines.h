@@ -9,5 +9,6 @@ void GenericStateMachine_Setup(void);
 STATE_T GenericStateMachine_ProcessState(int value);
 
 bool LineCache(char c, char * buffer, int len);
+bool LineCache_WithOutput(char c, char * buffer, int len);
 
 #endif /* STATE_MACHINES_H */

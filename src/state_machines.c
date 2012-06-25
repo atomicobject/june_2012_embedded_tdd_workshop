@@ -31,3 +31,8 @@ bool LineCache(char c, char * buffer, int len)
 {
   return false;
 }
+
+bool LineCache_WithOutput(char c, char * buffer, int len)
+{
+  return false;
+}

@@ -41,10 +41,10 @@ void test_LineCache_should_output_the_line_when_finished(void)
 {
   char buffer[16] = {0};
 
-  /* TEST_ASSERT_FALSE(LineCache('A',   buffer, sizeof(buffer))); */
-  /* TEST_ASSERT_FALSE(LineCache('B',   buffer, sizeof(buffer))); */
-  /* TEST_ASSERT_FALSE(LineCache('C',   buffer, sizeof(buffer))); */
-  /* TEST_ASSERT_TRUE( LineCache('\n',  buffer, sizeof(buffer))); */
+  /* TEST_ASSERT_FALSE(LineCache_WithOutput('A',   buffer, sizeof(buffer))); */
+  /* TEST_ASSERT_FALSE(LineCache_WithOutput('B',   buffer, sizeof(buffer))); */
+  /* TEST_ASSERT_FALSE(LineCache_WithOutput('C',   buffer, sizeof(buffer))); */
 
   /* Serial_Output_Expect("ABC\n"); */
+  /* TEST_ASSERT_TRUE( LineCache_WithOutput('\n',  buffer, sizeof(buffer))); */
 }
